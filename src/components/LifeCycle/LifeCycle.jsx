@@ -2,6 +2,22 @@ import React from 'react';
 import style from './LifeCycle.module.css';
 
 export class LifeCycle extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      field: 0,
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps');
+  }
+
+  handler = () => {
+    this.setState(state => ({field: state.field}));
+  };
+
   render() {
     return (
       <div>
@@ -27,6 +43,10 @@ export class LifeCycle extends React.Component {
             </ul>
           </div>
         </div>
+
+        <button className={style.btn} onClick={this.handler}>
+        Клик {this.state.field}
+        </button>
       </div>
     );
   }
